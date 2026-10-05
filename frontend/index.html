@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HAZE — Urban Mobility Engine</title>
+
+    <!-- Leaflet CSS -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+    <!-- Our CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header class="topbar">
+
+        <div class="brand">
+            <div class="brand-logo">H</div>
+
+            <div>
+                <h1>HAZE</h1>
+                <p>Hyperlocal AI-powered Zonal Mobility Engine</p>
+            </div>
+        </div>
+
+        <div class="system-status">
+            <span class="status-dot"></span>
+            SYSTEM ONLINE
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN DASHBOARD ================= -->
+    <main class="dashboard">
+
+        <!-- ================= STATISTICS ================= -->
+        <section class="stats-panel">
+
+            <div class="stat-card">
+                <span>ACTIVE VEHICLES</span>
+                <strong id="activeVehicles">142</strong>
+            </div>
+
+            <div class="stat-card">
+                <span>ACTIVE ROUTES</span>
+                <strong id="activeRoutes">24</strong>
+            </div>
+
+            <div class="stat-card">
+                <span>ON-TIME</span>
+                <strong id="onTime">87%</strong>
+            </div>
+
+            <div class="stat-card">
+                <span>CONGESTED</span>
+                <strong id="congestedRoutes">4</strong>
+            </div>
+
+        </section>
+
+
+        <!-- ================= MAP ================= -->
+        <section class="map-container">
+
+            <div id="map"></div>
+
+            <!-- Map label -->
+            <div class="map-label">
+                <span class="live-dot"></span>
+                LIVE TRANSIT MAP
+            </div>
+
+        </section>
+
+
+        <!-- ================= CONGESTION PANEL ================= -->
+        <aside class="glass-panel congestion-panel">
+
+            <div class="panel-heading">
+                <div>
+                    <span class="eyebrow">NETWORK</span>
+                    <h2>Route Status</h2>
+                </div>
+
+                <span class="live-indicator">LIVE</span>
+            </div>
+
+            <div id="congestionList" class="route-list">
+
+                <div class="route-item">
+                    <strong>25A</strong>
+                    <span class="route-status normal">● NORMAL</span>
+                </div>
+
+                <div class="route-item">
+                    <strong>10H</strong>
+                    <span class="route-status slow">● SLOW</span>
+                </div>
+
+                <div class="route-item">
+                    <strong>218</strong>
+                    <span class="route-status congested">● CONGESTED</span>
+                </div>
+
+                <div class="route-item">
+                    <strong>5K</strong>
+                    <span class="route-status normal">● NORMAL</span>
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- ================= VEHICLE DETAILS ================= -->
+        <aside id="vehiclePanel" class="glass-panel vehicle-panel">
+
+            <div class="panel-heading">
+                <div>
+                    <span class="eyebrow">SELECTED VEHICLE</span>
+                    <h2 id="vehicleId">BUS-216</h2>
+                </div>
+
+                <button id="closeVehicle" class="close-btn">
+                    ×
+                </button>
+            </div>
+
+            <div class="vehicle-route">
+                Route <strong id="vehicleRoute">25A</strong>
+            </div>
+
+            <div class="vehicle-details">
+
+                <div>
+                    <span>Speed</span>
+                    <strong id="vehicleSpeed">24 km/h</strong>
+                </div>
+
+                <div>
+                    <span>Delay</span>
+                    <strong id="vehicleDelay">+2 min</strong>
+                </div>
+
+                <div>
+                    <span>Status</span>
+                    <strong id="vehicleStatus" class="normal-text">
+                        ● NORMAL
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Last Updated</span>
+                    <strong id="vehicleUpdated">12:42:31</strong>
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- ================= HAZE AI CHATBOT ================= -->
+
+        <button id="chatToggle" class="chat-button">
+            <span>✦</span>
+            HAZE AI
+        </button>
+
+
+        <section id="chatPanel" class="chat-panel">
+
+            <div class="chat-header">
+
+                <div>
+                    <span class="eyebrow">INTELLIGENCE</span>
+                    <h2>HAZE AI</h2>
+                    <p>Transit Intelligence Assistant</p>
+                </div>
+
+                <button id="closeChat" class="close-btn">
+                    ×
+                </button>
+
+            </div>
+
+
+            <div id="chatMessages" class="chat-messages">
+
+                <div class="message ai-message">
+                    Hello. I'm HAZE AI. Ask me about routes,
+                    vehicles, congestion, delays, or transit conditions.
+                </div>
+
+            </div>
+
+
+            <div class="chat-input-area">
+
+                <input
+                    type="text"
+                    id="chatInput"
+                    placeholder="Ask HAZE AI..."
+                    autocomplete="off"
+                >
+
+                <button id="sendChat">
+                    ➤
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Leaflet JavaScript -->
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
+    <!-- Our JavaScript -->
+    <script src="app.js"></script>
+
+</body>
+</html>
