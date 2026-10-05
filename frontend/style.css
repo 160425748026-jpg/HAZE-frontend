@@ -1,0 +1,747 @@
+/* =========================================================
+   HAZE — Hyperlocal AI-powered Zonal Mobility Engine
+   Frontend Dashboard Styles
+   ========================================================= */
+
+:root {
+    --bg: #050a0f;
+    --panel: rgba(10, 22, 31, 0.76);
+    --panel-light: rgba(17, 34, 45, 0.68);
+    --border: rgba(255, 255, 255, 0.11);
+    --text: #f1f7fa;
+    --muted: #82949e;
+    --cyan: #4edfd0;
+    --green: #5ee6a8;
+    --yellow: #f1c75b;
+    --red: #ff6b6b;
+    --shadow: 0 18px 50px rgba(0, 0, 0, 0.32);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(43, 141, 145, 0.12), transparent 32%),
+        radial-gradient(circle at 85% 80%, rgba(25, 92, 119, 0.12), transparent 35%),
+        var(--bg);
+    color: var(--text);
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* ================= HEADER ================= */
+
+.topbar {
+    height: 82px;
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: rgba(4, 11, 16, 0.82);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    z-index: 1000;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.brand-logo {
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+
+    border-radius: 13px;
+    border: 1px solid rgba(78, 223, 208, 0.4);
+
+    background: linear-gradient(
+        145deg,
+        rgba(78, 223, 208, 0.22),
+        rgba(78, 223, 208, 0.05)
+    );
+
+    color: var(--cyan);
+    font-weight: 800;
+    font-size: 21px;
+
+    box-shadow: 0 0 25px rgba(78, 223, 208, 0.1);
+}
+
+.brand h1 {
+    font-size: 22px;
+    letter-spacing: 5px;
+}
+
+.brand p {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 3px;
+    letter-spacing: 0.4px;
+}
+
+.system-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 11px;
+    letter-spacing: 1.4px;
+    color: #a8b9c0;
+
+    border: 1px solid var(--border);
+    padding: 9px 12px;
+    border-radius: 30px;
+
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.status-dot,
+.live-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--green);
+    border-radius: 50%;
+    box-shadow: 0 0 9px var(--green);
+}
+
+/* ================= DASHBOARD ================= */
+
+.dashboard {
+    position: relative;
+    min-height: calc(100vh - 82px);
+    padding: 20px;
+}
+
+/* ================= STATS ================= */
+
+.stats-panel {
+    position: absolute;
+    top: 38px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: min(760px, calc(100% - 420px));
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+
+    z-index: 500;
+}
+
+.stat-card {
+    padding: 15px 18px;
+    border-radius: 15px;
+
+    background: rgba(8, 20, 28, 0.77);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+
+    transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(78, 223, 208, 0.35);
+}
+
+.stat-card span {
+    display: block;
+    color: var(--muted);
+    font-size: 9px;
+    letter-spacing: 1.3px;
+    margin-bottom: 7px;
+}
+
+.stat-card strong {
+    font-size: 23px;
+    font-weight: 600;
+}
+
+/* ================= MAP ================= */
+
+.map-container {
+    width: 100%;
+    height: calc(100vh - 122px);
+    min-height: 600px;
+
+    border: 1px solid var(--border);
+    border-radius: 22px;
+
+    overflow: hidden;
+    position: relative;
+
+    box-shadow: var(--shadow);
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    background: #091217;
+}
+
+/* Make Leaflet map darker */
+
+.leaflet-tile-pane {
+    filter:
+        brightness(0.55)
+        saturate(0.65)
+        contrast(1.18)
+        hue-rotate(145deg);
+}
+
+.leaflet-control-zoom a {
+    background: rgba(7, 17, 24, 0.92) !important;
+    color: white !important;
+    border-color: var(--border) !important;
+}
+
+.leaflet-control-attribution {
+    background: rgba(5, 12, 18, 0.75) !important;
+    color: #81919a !important;
+}
+
+.map-label {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+
+    z-index: 500;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 9px 13px;
+
+    border: 1px solid var(--border);
+    border-radius: 30px;
+
+    background: rgba(5, 14, 20, 0.78);
+    backdrop-filter: blur(12px);
+
+    font-size: 10px;
+    letter-spacing: 1.2px;
+}
+
+/* ================= GLASS PANELS ================= */
+
+.glass-panel,
+.chat-panel {
+    background: var(--panel);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid var(--border);
+    border-radius: 18px;
+
+    box-shadow: var(--shadow);
+}
+
+.panel-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+}
+
+.eyebrow {
+    color: var(--cyan);
+    font-size: 8px;
+    letter-spacing: 1.8px;
+}
+
+.panel-heading h2,
+.chat-header h2 {
+    font-size: 17px;
+    margin-top: 4px;
+}
+
+.live-indicator {
+    font-size: 8px;
+    letter-spacing: 1px;
+    color: var(--green);
+
+    border: 1px solid rgba(94, 230, 168, 0.25);
+    border-radius: 20px;
+
+    padding: 5px 8px;
+}
+
+/* ================= CONGESTION ================= */
+
+.congestion-panel {
+    position: absolute;
+    left: 40px;
+    bottom: 40px;
+
+    width: 250px;
+    padding: 18px;
+
+    z-index: 500;
+}
+
+.route-list {
+    margin-top: 9px;
+}
+
+.route-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 11px 3px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+}
+
+.route-item:last-child {
+    border-bottom: 0;
+}
+
+.route-item strong {
+    font-size: 13px;
+}
+
+.route-status {
+    font-size: 9px;
+    letter-spacing: 0.6px;
+}
+
+.normal {
+    color: var(--green);
+}
+
+.slow {
+    color: var(--yellow);
+}
+
+.congested {
+    color: var(--red);
+}
+
+/* ================= VEHICLE PANEL ================= */
+
+.vehicle-panel {
+    position: absolute;
+    right: 40px;
+    top: 145px;
+
+    width: 260px;
+    padding: 18px;
+
+    z-index: 500;
+
+    opacity: 0;
+    transform: translateX(25px);
+    pointer-events: none;
+
+    transition: 0.3s ease;
+}
+
+.vehicle-panel.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+.close-btn {
+    width: 29px;
+    height: 29px;
+
+    border: 1px solid var(--border);
+    border-radius: 9px;
+
+    background: rgba(255, 255, 255, 0.04);
+    color: #b9c7cd;
+
+    font-size: 18px;
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.09);
+    color: white;
+}
+
+.vehicle-route {
+    margin: 14px 0;
+    padding: 11px 12px;
+
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 11px;
+
+    color: var(--muted);
+    font-size: 11px;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.vehicle-route strong {
+    color: var(--cyan);
+}
+
+.vehicle-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+}
+
+.vehicle-details div {
+    padding: 11px;
+
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.055);
+    border-radius: 11px;
+}
+
+.vehicle-details span {
+    display: block;
+    color: var(--muted);
+    font-size: 9px;
+    margin-bottom: 6px;
+}
+
+.vehicle-details strong {
+    font-size: 11px;
+}
+
+.normal-text {
+    color: var(--green);
+}
+
+.delayed-text {
+    color: var(--yellow);
+}
+
+.congested-text {
+    color: var(--red);
+}
+
+/* ================= VEHICLE MARKERS ================= */
+
+.vehicle-marker {
+    width: 28px;
+    height: 28px;
+
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+
+    display: grid;
+    place-items: center;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    color: #041014;
+
+    box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.08),
+                0 5px 18px rgba(0, 0, 0, 0.5);
+
+    cursor: pointer;
+}
+
+.vehicle-marker.normal-marker {
+    background: var(--green);
+}
+
+.vehicle-marker.delayed-marker {
+    background: var(--yellow);
+}
+
+.vehicle-marker.congested-marker {
+    background: var(--red);
+}
+
+/* ================= CHAT ================= */
+
+.chat-button {
+    position: fixed;
+    right: 28px;
+    bottom: 27px;
+
+    z-index: 1200;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 12px 17px;
+
+    border: 1px solid rgba(78, 223, 208, 0.35);
+    border-radius: 30px;
+
+    background: rgba(9, 27, 34, 0.9);
+    backdrop-filter: blur(15px);
+
+    color: var(--text);
+    font-size: 11px;
+    letter-spacing: 0.8px;
+
+    box-shadow: 0 0 28px rgba(78, 223, 208, 0.13);
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+.chat-button span {
+    color: var(--cyan);
+}
+
+.chat-button:hover {
+    transform: translateY(-3px);
+    border-color: var(--cyan);
+}
+
+.chat-panel {
+    position: fixed;
+
+    right: 28px;
+    bottom: 85px;
+
+    width: 350px;
+    height: 480px;
+
+    z-index: 1300;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+    pointer-events: none;
+
+    transition: 0.3s ease;
+}
+
+.chat-panel.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.chat-header {
+    padding: 17px;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.chat-header p {
+    color: var(--muted);
+    font-size: 9px;
+    margin-top: 3px;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 16px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+
+    overflow-y: auto;
+}
+
+.message {
+    max-width: 84%;
+    padding: 11px 13px;
+
+    border-radius: 13px;
+
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.ai-message {
+    align-self: flex-start;
+
+    background: rgba(78, 223, 208, 0.08);
+    border: 1px solid rgba(78, 223, 208, 0.12);
+
+    color: #c9dadd;
+}
+
+.user-message {
+    align-self: flex-end;
+
+    background: rgba(255, 255, 255, 0.09);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.chat-input-area {
+    padding: 12px;
+
+    display: flex;
+    gap: 8px;
+
+    border-top: 1px solid var(--border);
+}
+
+.chat-input-area input {
+    flex: 1;
+
+    border: 1px solid var(--border);
+    outline: none;
+
+    background: rgba(255, 255, 255, 0.04);
+    color: white;
+
+    border-radius: 11px;
+    padding: 11px 12px;
+
+    font-size: 11px;
+}
+
+.chat-input-area input:focus {
+    border-color: rgba(78, 223, 208, 0.4);
+}
+
+.chat-input-area button {
+    width: 40px;
+
+    border: 1px solid rgba(78, 223, 208, 0.25);
+    border-radius: 11px;
+
+    background: rgba(78, 223, 208, 0.12);
+    color: var(--cyan);
+
+    cursor: pointer;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+
+    .topbar {
+        padding: 0 16px;
+    }
+
+    .brand p {
+        display: none;
+    }
+
+    .system-status {
+        font-size: 8px;
+    }
+
+    .dashboard {
+        padding: 10px;
+    }
+
+    .map-container {
+        height: calc(100vh - 102px);
+        min-height: 620px;
+        border-radius: 16px;
+    }
+
+    .stats-panel {
+        top: 25px;
+        width: calc(100% - 40px);
+
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat-card {
+        padding: 10px 12px;
+    }
+
+    .stat-card strong {
+        font-size: 18px;
+    }
+
+    .congestion-panel {
+        left: 22px;
+        bottom: 22px;
+
+        width: 210px;
+        padding: 14px;
+    }
+
+    .vehicle-panel {
+        right: 22px;
+        top: 190px;
+
+        width: 220px;
+        padding: 14px;
+    }
+
+    .chat-panel {
+        width: calc(100% - 30px);
+        right: 15px;
+        bottom: 78px;
+        height: min(500px, 70vh);
+    }
+
+    .chat-button {
+        right: 18px;
+        bottom: 18px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .brand h1 {
+        font-size: 18px;
+        letter-spacing: 4px;
+    }
+
+    .brand-logo {
+        width: 37px;
+        height: 37px;
+    }
+
+    .system-status {
+        padding: 7px 9px;
+    }
+
+    .vehicle-panel {
+        top: auto;
+        right: 20px;
+        bottom: 215px;
+
+        width: calc(100% - 40px);
+        max-width: 280px;
+    }
+
+    .congestion-panel {
+        width: 195px;
+    }
+
+    .route-item {
+        padding: 8px 2px;
+    }
+  }
